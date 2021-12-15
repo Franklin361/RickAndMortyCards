@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;500;700;900&display=swap');
+
+*, body, html{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 15px;
+}
+img::selection{
+    background-color: transparent;
+}
+
+body::-webkit-scrollbar{
+    width: 0;
+}

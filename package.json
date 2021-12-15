@@ -7,11 +7,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "formik": "^2.2.9",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
     "react-router-dom": "^6.1.1",
-    "socket.io-client": "^4.4.0"
+    "react-toastify": "^8.1.0",
+    "socket.io-client": "^4.4.0",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@types/react": "^17.0.33",

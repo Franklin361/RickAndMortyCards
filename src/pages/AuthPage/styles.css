@@ -1,0 +1,236 @@
+.container_body{
+    background-image: url('../../assets/back.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+}
+.container_form{
+    width: 90%;
+    display: grid;
+    grid-template-columns: 60% 39%;
+    gap: 1em;
+    border-radius: 12px;
+    overflow: hidden;
+    min-height: 580px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #fff;
+    box-shadow: -10px 1px 10px rgba(0, 0, 0, 0.219);
+}
+.container_titles{
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 1em 0;
+    gap: .5em;
+}
+.title_page{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    text-align: center;
+    font-size: 5em;
+    text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.212);
+    line-height: 1em;
+}
+.instructions{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+.form{
+    padding: 1em;
+    display: flex;
+    justify-content:center;
+    flex-direction: column;
+    gap: 1.5em;
+    width: 90%;
+    margin: auto;
+}
+.input_item{
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.input_item > input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 1.5em;
+    padding: .5em;
+    font-weight: 400;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 1px;
+}
+.input_item > .icon{
+    font-size: 2em;
+    display: inline-block;
+    margin: 0 .4em;
+}
+
+.img_form{
+position: relative;
+}
+.img_form::after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,0,0,0) 85%);
+    top: 0%;
+    left: 0;
+}
+
+.img_form::before{
+    content: "By: Franklin Mtz ©️";
+    position: absolute;
+    font-family: 'Poppins', sans-serif;
+    display: inline-block;
+    padding: 1em;
+    bottom: 0%;
+    right: 0%;
+    z-index: 99;
+    color:rgb(230, 230, 230);
+    background-color: rgba(22, 20, 20, 0.884);
+    border-radius: 10px 0px 10px 0px;
+}
+
+.img_form > img{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.input_container{ position: relative;}
+.input_container > label{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: .3em;
+    font-size: 1.3em;
+}
+.sign_up_link{
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+.error_form{
+    font-family: 'Poppins', sans-serif;
+    position: absolute;
+    bottom: -25px;
+    right: 5px;
+    color: red;
+}
+.btn_login {
+  appearance: none;
+  
+  background-color: #000000;
+  color: #FFFFFF;
+  font-size: 1.2em;
+  border: 2px solid #1A1A1A;
+  border-radius: 15px;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 1px;
+  margin: 1em 0 0 0;
+  min-height: 60px;
+  min-width: 0;
+  outline: none;
+  padding: 16px 24px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 100%;
+  will-change: transform;
+}
+.btn_login{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    gap: .5em;
+}
+.btn_login > .icon {
+    font-size: 1.2em;
+}
+  .btn_login:disabled {
+  pointer-events: none;
+}
+
+.btn_login:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);}
+
+  .btn_login:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+
+@media screen and (max-width:800px) {
+    .title_page{
+        font-size: 3em;
+    }
+    .container_form{
+        min-height: 180px;
+    }
+    .form{
+        gap: 1em;
+    }
+    .input_item{
+        margin-bottom: .5em;
+        display: flex;
+        align-items: center;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+    .input_item > input {
+        width: 100%;
+        border: none;
+        outline: none;
+        font-size: 1.2em;
+        padding: .5em .5em .5em 0em;
+        
+    }
+    .input_item > .icon{
+        font-size: 1.5em;
+    }
+    .error_form{
+        bottom: -15px;
+        font-size: .9em;
+    }
+}
+@media screen and (max-width:750px) {
+    .container_titles{
+        margin: 0;
+    }
+    .img_form{
+        display: none;
+    }
+    .title_page{
+        font-size: 2em;
+        text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.075);
+    }
+    .container_form{
+        width: 90%;
+        display: inline-block;
+        box-shadow: none;
+        border: 1px solid black;       
+        min-height: 180px;
+        padding-top: 1em;
+    }
+
+    
+    
+}
