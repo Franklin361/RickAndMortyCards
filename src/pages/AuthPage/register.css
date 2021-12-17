@@ -1,54 +1,59 @@
-.body_form{
+.body_form {
   background-image: url("../../assets/back_form.svg");
 }
-.register_form{
-    grid-template-columns: 39% 60%;
-    box-shadow: 10px 1px 10px rgba(0, 0, 0, 0.219);
+.register_form {
+  grid-template-columns: 39% 60%;
+  box-shadow: 10px 1px 10px rgba(0, 0, 0, 0.219);
 }
-.btn_register{
-    margin-top: 0.5em;
+.btn_register {
+  margin-top: 0.5em;
 }
-.titles_register{
-    margin: 0;
+.titles_register {
+  margin: 0;
 }
 
 .register_form_img {
-    position: relative;
-  }
+  position: relative;
+}
 .register_form_img::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgb(2, 0, 36);
-    background: linear-gradient(
-      270deg,
-      rgba(2, 0, 36, 0.692) 0%,
-      rgba(0, 0, 0, 0) 85%
-    );
-    top: 0%;
-    left: 0;
-  }
-  
-  
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    270deg,
+    rgba(2, 0, 36, 0.692) 0%,
+    rgba(0, 0, 0, 0) 85%
+  );
+  top: 0%;
+  left: 0;
+}
+
 .register_form_img::before {
-    content: "By: Franklin Mtz ©️";
-    position: absolute;
-    font-family: "Poppins", sans-serif;
-    display: inline-block;
-    padding: 1em;
-    bottom: 0%;
-    right: 0%;
-    z-index: 99;
-    color: rgb(230, 230, 230);
-    background-color: rgba(22, 20, 20, 0.884);
-    border-radius: 10px 0px 10px 0px;
+  content: "By: Franklin Mtz ©️";
+  position: absolute;
+  font-family: "Poppins", sans-serif;
+  display: inline-block;
+  padding: 1em;
+  bottom: 0%;
+  right: 0%;
+  z-index: 99;
+  color: rgb(230, 230, 230);
+  background-color: rgba(22, 20, 20, 0.884);
+  border-radius: 10px 0px 10px 0px;
+}
+
+.register_form_img > img {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 750px){
+  .register_form_img::before{
+    display: none;
   }
-  
-  .register_form_img > img {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+}

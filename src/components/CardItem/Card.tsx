@@ -29,6 +29,7 @@ export const Card = () => {
                     }
                     
                 </button>
+                <span className="title_btn_like">Me gusta!</span>
             </div>
         </div>
     )

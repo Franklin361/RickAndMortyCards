@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Loading } from '../components/Loading/Loading';
 
 const LoginPage = lazy(() => import("../pages/AuthPage/LoginPage"));
 const RegisterPage = lazy(() => import("../pages/AuthPage/RegisterPage"));
@@ -20,7 +21,7 @@ export const AppRouter = () => {
 
 const LazyCompont: React.FC = ({ children }) => {
     return (
-        <Suspense fallback={<>Espere</>}>
+        <Suspense fallback={<Loading width="100vw" height="100vh" />}>
             {children}
         </Suspense>
     )
