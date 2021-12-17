@@ -2,29 +2,36 @@ import * as Yup from 'yup';
 import { Form, Formik } from 'formik';
 import { TextInputForm } from '../../components/TextInputForm';
 import { Link } from 'react-router-dom';
-import { AiOutlineUser, AiOutlineKey, AiOutlineLogin } from 'react-icons/ai';
+import { AiOutlineUser, AiOutlineKey, AiOutlineLogin, AiOutlineMail } from 'react-icons/ai';
 import { showToast } from '../../helper/toast';
 
-import back_form from "../../assets/back_form.jpg";
+import back_form from "../../assets/back_form_register.jpg";
 
 import './styles.css'
+import './register.css'
 
-export const AuthPage = () => {
+
+export const RegisterPage = () => {
     return (
-        <div className='container_body'>
-            <div className="container_form">
+        <div className='container_body body_form'>
+            <div className="container_form register_form">
+                <div className='register_form_img'>
+                    <img src={back_form} alt="Background for Form" draggable={false} />
+                </div>
                 <Formik
                     initialValues={{
                         username: '',
-                        password: ''
+                        password: '',
+                        email:''
                     }}
                     onSubmit={(values) => {
                         console.log(values)
-                        showToast({type:'success', toastId:'0', message:'Correct Login'})
+                        showToast({ type: 'success', toastId: '0', message: 'Correct Register' })
                     }}
                     validationSchema={
                         Yup.object({
                             username: Yup.string().required('Este campo es requerido'),
+                            email: Yup.string().required('Este campo es requerido').email('Correo electronico no valido'),
                             password: Yup.string().min(6, 'Debe tener minimo 6 letras').required('Este campo es requerido'),
                         })
                     }
@@ -32,9 +39,9 @@ export const AuthPage = () => {
                     {
                         ({ }) => (
                             <Form className='form' noValidate>
-                                <div className='container_titles'>
-                                    <h2 className='title_page'>Inicio de sesión</h2>
-                                    <span className='instructions'>Por favor ingrese su nombre de usuario y contraseña para poder ingresar.</span>
+                                <div className='container_titles titles_register'>
+                                    <h2 className='title_page'>¡Crea tu cuenta!</h2>
+                                    <span className='instructions'>Totalmente gratis</span>
                                 </div>
 
                                 <TextInputForm
@@ -48,6 +55,16 @@ export const AuthPage = () => {
                                 </TextInputForm>
 
                                 <TextInputForm
+                                    label='Correo electronico:'
+                                    type='email'
+                                    id='email'
+                                    name='email'
+                                    placeholder='example@example.com'
+                                >
+                                    <AiOutlineMail className='icon' />
+                                </TextInputForm>
+
+                                <TextInputForm
                                     name='password'
                                     label='Contraseña:'
                                     type='password'
@@ -57,20 +74,21 @@ export const AuthPage = () => {
                                     <AiOutlineKey className='icon' />
                                 </TextInputForm>
 
-                                <button type="submit" className='btn_login'>
-                                    Ingresar
+                                <button type="submit" className='btn_login btn_register'>
+                                    Crear cuenta
                                     <AiOutlineLogin className='icon' />
                                 </button>
 
-                                <span className='sign_up_link'>¿Aún no tienes cuenta 🤔? <Link to="sign-up">Crea una aquí</Link></span>
+                                <span className='sign_up_link'>¿Ya tienes una cuenta 🤨? <Link to="/login">
+                                    Inicia sesión ahora</Link></span>
                             </Form>
                         )
                     }
                 </Formik>
-                <div className='img_form'>
-                    <img src={back_form} alt="Background for Form" draggable={false} />
-                </div>
+
             </div>
         </div>
     )
 }
+
+export default RegisterPage

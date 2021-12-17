@@ -1,0 +1,120 @@
+.item {
+  border-radius: 12px;
+  width: 100%;
+  margin: auto;
+  overflow: hidden;
+  display: flex;
+}
+.item > img {
+  width: 40%;
+  object-fit: cover;
+  vertical-align: top;
+}
+.icon_heart {
+  color: red;
+}
+.info_character {
+  background-color: rgb(49, 45, 53);
+  color: white;
+  padding: 1em 1em 1em 1em;
+  flex: 1;
+  position: relative;
+}
+.details_character > p,
+.info_character > h3 {
+  font-family: "Poppins", sans-serif;
+}
+.title_card {
+  font-size: 2em;
+  text-align: center;
+  line-height: 1em;
+  display: inline-block;
+  padding: 0.5em 0;
+}
+.details_character {
+  display: flex;
+  flex-direction: column;
+}
+.details_character > p {
+  font-weight: 400;
+  color: #acacac;
+}
+.response {
+  font-weight: bold;
+  letter-spacing: 1px;
+  position: relative;
+  color: white;
+}
+
+.dead::before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: red;
+  position: absolute;
+  top: 50%;
+  right: -20px;
+  transform: translateY(-50%);
+}
+
+.btn_like {
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  appearance: none;
+  background-color: #000000;
+  font-size: 1.2em;
+  border: 2px solid #1a1a1a;
+  border-radius: 50%;
+  box-sizing: border-box; 
+  outline: none;
+  transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  will-change: transform;
+}
+.btn_like > .icon {
+  font-size: 2em;
+  color: rgb(158, 158, 158);
+  transition: color .3s ease-in-out;
+}
+.btn_like > .icon_fill{
+  color: red;
+}
+.btn_like:disabled {
+  pointer-events: none;
+}
+
+.btn_like:hover {
+  box-shadow: rgba(129, 129, 129, 0.25) 0 8px 15px;
+  top: 48%;
+}
+.btn_like:hover > .icon {
+  color: red;
+}
+.btn_like:active {
+  box-shadow: none;
+  top: 49%;
+}
+
+
+@media screen and (max-width: 750px){
+  .item {
+    flex-direction: column;
+  }
+  .item > img {
+    width: 100%;
+    object-fit: cover;
+    vertical-align: top;
+  }
+}

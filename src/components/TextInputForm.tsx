@@ -4,7 +4,7 @@ interface ITextInputFormProps{
     label:string;
     id:string;
     name:string;
-    type: 'text' | 'password';
+    type: 'text' | 'password' | 'email';
     placeholder:string;
     children?: React.ReactNode
 }
