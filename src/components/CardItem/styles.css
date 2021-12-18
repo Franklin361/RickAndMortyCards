@@ -30,6 +30,7 @@
   line-height: 1em;
   display: inline-block;
   padding: 0.5em 0;
+  
 }
 .details_character {
   display: flex;
@@ -150,5 +151,14 @@
     width: 100%;
     object-fit: cover;
     vertical-align: top;
+  }
+  .title_card{
+    background-color: rgb(29, 28, 31);
+    margin-bottom: .5em;
+    border-radius: 5px;
+  }
+
+  .btn_like{
+    top: 55%;
   }
 }

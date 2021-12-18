@@ -7,7 +7,6 @@ import { Card } from "../../components/CardItem/Card";
 import { HeaderNav } from "../../components/HeaderNav";
 import { InputSearch } from "../../components/InputSearch";
 import { LayoutCards } from '../../components/LayoutCards';
-import { ButtonSearch } from '../../components/Button/ButtonSearch';
 
 import "./styles.css";
 
@@ -24,7 +23,6 @@ export const HomePage = () => {
 
             <LayoutCards/>
 
-            <ButtonSearch/>
         </div>
     )
 }
