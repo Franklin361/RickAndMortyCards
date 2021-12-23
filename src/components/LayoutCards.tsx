@@ -1,14 +1,20 @@
 
 import { Card } from './CardItem/Card';
+import { ResponseAPI } from '../interfaces/responseApi';
 
-export const LayoutCards = () => {
+interface IProps {
+    data: ResponseAPI
+}
+
+export const LayoutCards = ({ data }: IProps) => {
     return (
         <main className="grid_gallery">
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
+            {
+                (data?.results && data.results.length !== 0)
+                && data.results.map(result => (
+                    <Card key={ result.id } {...result} />
+                ))
+            }
         </main>
     )
 }
