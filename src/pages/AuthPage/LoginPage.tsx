@@ -20,7 +20,7 @@ export const LoginPage = () => {
                         password: ''
                     }}
                     onSubmit={(values) => {
-                        console.log(values)
+
                         showToast({type:'success', toastId:'0', message:'Correct Login'})
                         navigate('/', { replace: true })
                     }}

@@ -36,7 +36,7 @@
   background-color: rgb(125, 219, 48);
   color: #000;
 }
-.activated_link{
+.activated_link {
   background-color: rgb(125, 219, 48);
   color: #000;
 }
@@ -68,7 +68,7 @@
   background-color: #f31c1c;
   color: #ffffff;
   border: 2px solid #ff0202;
-border-radius: 45px;
+  border-radius: 45px;
   cursor: pointer;
   font-family: "Poppins", sans-serif;
   padding: 0.5em 0;
@@ -108,7 +108,7 @@ border-radius: 45px;
     gap: 1em;
     width: auto;
   }
-  .header_home{
+  .header_home {
     position: static;
   }
 }
@@ -128,11 +128,16 @@ border-radius: 45px;
   }
   .link_nav {
     width: 100%;
-    background-color: rgb(125, 219, 48);
-    color: #000;
+    background-color: transparent;
+    border: 2px solid rgb(125, 219, 48);
+    color: white;
     border-radius: 45px;
   }
-  .btn_logout{
+  .activated_link {
+    background-color: rgb(125, 219, 48);
+    color: #000;
+  }
+  .btn_logout {
     width: 100%;
   }
 }

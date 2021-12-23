@@ -10,6 +10,38 @@
   background-color: rgb(49, 45, 53);
   box-shadow: rgba(34, 33, 33, 0.404) 0 8px 15px;
 }
+
+.item_favs{
+  display: flex;
+  width: 80%;
+  margin: 3em auto;
+}
+
+.delete_favs{
+  width: 100%;
+  padding: 1em 0;
+  
+  display: flex;
+  justify-content: flex-end;
+}
+
+.delete_favs > button {
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  gap: .5em;
+  font-family: "Poppins", sans-serif;
+  padding: .5em;
+  cursor: pointer;
+  background-color: rgb(255, 56, 56);
+  border: none;
+  color: white;
+  border-radius: 5px;
+}
+.delete_favs > button > .icon {
+  font-size: 1.5em;
+}
+
 .container_info_seco {
   display: flex;
   font-family: "Poppins", sans-serif;
@@ -19,6 +51,10 @@
   margin-bottom: 0.5em;
   padding-bottom: 0.5em;
   border-bottom: 1px solid rgb(92, 92, 92);
+}
+.image_favs{
+  width: 500px;
+  min-height: 100px;
 }
 .image_container > span {
   width: 100%;
@@ -211,6 +247,18 @@
     grid-template-columns: 1fr;
     min-height: min-content;
     max-height: max-content;
+  }
+  .item_favs{
+    flex-direction: column;
+    width: 90%;
+  }
+  .image_favs{
+    width: auto;
+    min-height: 100px;
+  }
+  .delete_favs > button{
+    width: 100%;
+    padding: 1em;
   }
   .title_btn_like {
     display: none;

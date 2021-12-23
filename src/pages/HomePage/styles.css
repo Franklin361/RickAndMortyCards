@@ -1,6 +1,6 @@
 .container_home {
   min-height: 100vh;
-  min-width: 100vw;
+  min-width: 100%;
   background: #f2f2f2;
   padding-top: 3em;
 }
@@ -13,14 +13,10 @@
   padding-bottom: 2em;
   /* outline: auto; */
 }
-.title_page{
-  font-family: "Poppins", sans-serif;
-  text-align: center;
-  margin: .5em auto 1em auto;
-  font-size: 3em;
-  width: 80%;
-  border-bottom: 1px solid black;
+.grid_gallery_favorites{
+  grid-template-columns: repeat(1, 1fr);
 }
+
 .section_search {
   width: 80%;
   transform: scale(0.8);

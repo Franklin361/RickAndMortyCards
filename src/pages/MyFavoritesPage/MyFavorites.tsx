@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Card } from '../../components/CardItem/Card';
 import './style.css'
 import { ResponseAPI } from '../../interfaces/responseApi';
-import { LayoutCards } from '../../components/LayoutCards';
+import { LayoutCards } from '../../components/CardItem/LayoutCards';
 
 export const MyFavorites = () => {
 
@@ -19,7 +19,6 @@ export const MyFavorites = () => {
     const fetchData = async () => {
       const res = await fetch(`https://rickandmortyapi.com/api/character/?page=4`);
       const resData: ResponseAPI = await res.json();
-      console.log(resData)
       setData(resData);
     };
 

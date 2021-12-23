@@ -2,7 +2,10 @@ import './style.css'
 import { ItemTable } from './ItemTable';
 import { AiOutlineFileImage, AiOutlineLike, AiOutlineTrophy, AiOutlineUser } from 'react-icons/ai';
 
+
+
 export const Ranking = () => {
+    
     return (
         <>
             <h2 className='title_page'>Clasificación de cards 📊 </h2>
@@ -29,6 +32,42 @@ export const Ranking = () => {
                     <ItemTable/>
                 </tbody>
             </table>
+
+            <div className='container_rank_movil'>
+                <div className='item_movil_rank'>
+                    <p>#</p>
+                    <p>Imagen</p>
+                    <p>Nombre</p>
+                    <p>Votos</p>
+                </div>
+
+                <div className='item_movil_rank'>
+                    <p className='rank_movil'>1</p>
+                    <img src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" alt="" />
+                    <p>Lorem ipsum dolor sit amet.</p>
+                    <p className='votes_movil'>1200</p>
+                </div>
+                <div className='item_movil_rank'>
+                    <p className='rank_movil'>1</p>
+                    <img src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" alt="" />
+                    <p>Lorem ipsum dolor sit amet.</p>
+                    <p className='votes_movil'>1200</p>
+                </div>
+                <div className='item_movil_rank'>
+                    <p className='rank_movil'>1</p>
+                    <img src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" alt="" />
+                    <p>Lorem ipsum dolor sit amet.</p>
+                    <p className='votes_movil'>1200</p>
+                </div>
+                <div className='item_movil_rank'>
+                    <p className='rank_movil'>1</p>
+                    <img src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" alt="" />
+                    <p>Lorem ipsum dolor sit amet.</p>
+                    <p className='votes_movil'>1200</p>
+                </div>
+                
+
+            </div>
 
         </ >
     )

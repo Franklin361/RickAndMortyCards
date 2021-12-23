@@ -2,7 +2,7 @@
 import { Card } from "../../components/CardItem/Card";
 import { HeaderNav } from "../../components/HeaderNav/HeaderNav";
 import { InputSearch } from "../../components/InputSearch";
-import { LayoutCards } from '../../components/LayoutCards';
+import { LayoutCards } from '../../components/CardItem/LayoutCards';
 
 import "./styles.css";
 import { useEffect, useRef, useState } from 'react';

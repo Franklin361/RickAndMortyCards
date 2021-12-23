@@ -1,18 +1,20 @@
 import { useEffect, useState } from "react";
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import { AiOutlineHeart, AiFillHeart, AiOutlineDelete } from "react-icons/ai";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import "./styles.css";
 import { Result } from '../../interfaces/responseApi';
 import { Episode } from '../../interfaces/responseEpisode';
 import { LoadingImage } from '../Loading/Loading';
 
-interface ICardProps{
+interface ICardProps {
     data: Result;
-    typeCard?:string;
+    typeCard?: 'favorites';
 }
 
-export const Card = ({data, typeCard} :ICardProps) => {
+export const Card = ({ data, typeCard }: ICardProps) => {
     const [dataCardEpisode, setDataCardEpisode] = useState<Episode>();
+
+    const isFavPage = typeCard === 'favorites';
 
     const { id, image, name, status, type, gender, origin, location, episode } = data
 
@@ -31,9 +33,9 @@ export const Card = ({data, typeCard} :ICardProps) => {
     }, [])
 
     return (
-        <div className="item" id={id.toString()} >
+        <div className={`item ${isFavPage && 'item_favs'}`} id={id.toString()} >
 
-            <div className="image_container">
+            <div className={`image_container ${isFavPage && 'image_favs'}`}>
 
                 <LazyLoadImage
                     placeholder={<LoadingImage />}
@@ -41,17 +43,20 @@ export const Card = ({data, typeCard} :ICardProps) => {
                     className="image_card"
                     effect="opacity"
                 />
-
-                <div className="btn_like_content">
-                    <button className="btn_like web" >
-                        <AiFillHeart className="icon" />
-                    </button>
-                    <span className="title_btn_like">Me gusta!</span>
-                </div>
+                {
+                    (!isFavPage)
+                    &&
+                    <div className="btn_like_content">
+                        <button className="btn_like web" >
+                            <AiFillHeart className="icon" />
+                        </button>
+                        <span className="title_btn_like">Me gusta!</span>
+                    </div>
+                }
             </div>
 
             <div className="info_character">
-                <h3 className="title_card">{name.length > 30 ? `${name.slice(0,30)}...`: name}</h3>
+                <h3 className="title_card">{name.length > 30 ? `${name.slice(0, 30)}...` : name}</h3>
 
                 <div className="details_character">
                     <div className="container_info_seco">
@@ -64,7 +69,7 @@ export const Card = ({data, typeCard} :ICardProps) => {
                             <span className="response">{gender}</span>
                         </div>
                     </div>
-                    
+
                     <p> Origin: <span className="response">{origin.name.length > 25 ? `${origin.name.slice(0, 25)}...` : origin.name}</span></p>
                     <p> Location: <span className="response">{location.name.length > 20 ? `${location.name.slice(0, 23)}...` : location.name}</span></p>
                     <p> First seen in: <span className="response">{
@@ -74,6 +79,17 @@ export const Card = ({data, typeCard} :ICardProps) => {
                                 : dataCardEpisode.name
                             : ''
                     }</span></p>
+
+                    {
+                        (isFavPage)
+                        &&
+                        <div className="delete_favs">
+                            <button>
+                            Eliminar de Mis Favoritos
+                            <AiOutlineDelete className="icon"/>
+                            </button>
+                        </div>
+                    }
                 </div>
             </div>
         </div>

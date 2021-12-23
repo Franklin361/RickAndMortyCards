@@ -14,9 +14,6 @@ export const AppRouter = () => {
     
     return (
         <BrowserRouter>
-
-
-
             <Routes>
 
                 <Route element={<PublicRoutes />}>
@@ -29,6 +26,8 @@ export const AppRouter = () => {
                     <Route path="ranking" element={<LazyCompont> <RankingPage />  </LazyCompont>} />
                     <Route path="favorites" element={<LazyCompont> <MyFavoritesPage />  </LazyCompont>} />
                 </Route>
+
+                <Route path="/*" element={<Navigate to='/' replace={true} />}/>
 
             </Routes>
         </BrowserRouter>

@@ -1,0 +1,8 @@
+.title_page{
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    margin: .5em auto 1em auto;
+    font-size: 3em;
+    width: 80%;
+    border-bottom: 1px solid black;
+  }
