@@ -1,18 +1,25 @@
 import './style.css';
 
 interface ILoadingProps {
-    width:string;
-    height:string;
+    width: string;
+    height: string;
 }
 
-export const Loading = ({ width, height }:ILoadingProps) => {
+export const Loading = ({ width, height }: ILoadingProps) => {
     return (
         <div className="container_loading" style={{ width, height }}>
-            <div className="lds-ripple">
-                <div></div>
-                <div></div>
-            </div>
+            <LoadingImage />
             <span>Cargando...</span>
+        </div>
+    )
+}
+
+
+export const LoadingImage = () => {
+    return (
+        <div className="lds-ripple">
+            <div></div>
+            <div></div>
         </div>
     )
 }

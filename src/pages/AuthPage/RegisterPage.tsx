@@ -40,7 +40,7 @@ export const RegisterPage = () => {
                         ({ }) => (
                             <Form className='form' noValidate>
                                 <div className='container_titles titles_register'>
-                                    <h2 className='title_page'>¡Crea tu cuenta!</h2>
+                                    <h2 className='title_page_auth'>¡Crea tu cuenta!</h2>
                                     <span className='instructions'>Totalmente gratis</span>
                                 </div>
 

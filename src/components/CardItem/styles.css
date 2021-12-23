@@ -10,15 +10,15 @@
   background-color: rgb(49, 45, 53);
   box-shadow: rgba(34, 33, 33, 0.404) 0 8px 15px;
 }
-.container_info_seco{
-   display: flex;
-   font-family: "Poppins", sans-serif;
-   width: 100%;
-   justify-content: center;
-   gap: 3em;
-   margin-bottom: .5em;
-   padding-bottom: .5em;
-   border-bottom: 1px solid rgb(92, 92, 92);
+.container_info_seco {
+  display: flex;
+  font-family: "Poppins", sans-serif;
+  width: 100%;
+  justify-content: center;
+  gap: 3em;
+  margin-bottom: 0.5em;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid rgb(92, 92, 92);
 }
 .image_container > span {
   width: 100%;
@@ -45,16 +45,20 @@
   font-family: "Poppins", sans-serif;
 }
 
-.details_character > p{
+.details_character > p {
   line-height: 25px;
 }
 .title_card {
   background-color: black;
   width: 100%;
+  min-height: 100px;
   font-size: 2em;
-  text-align: center;
+  
   line-height: 1em;
-  display: inline-block;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  text-align: center;
   padding: 0.5em;
   border-radius: 5px;
   margin-bottom: 0.5em;
@@ -63,9 +67,13 @@
   display: flex;
   flex-direction: column;
 }
-.details_character > p, .container_info_seco > p {
+.details_character > p,
+.container_info_seco > p {
   font-weight: 400;
   color: #acacac;
+}
+.container_info_seco > div {
+  text-align: center;
 }
 .response {
   font-weight: bold;
@@ -172,16 +180,21 @@
 }
 .image_container {
   position: relative;
+  display: flex;
+  justify-content:center;
+  align-items: center;
 }
-.web { display: none;}
+.web {
+  display: none;
+}
 .image_container:hover > .btn_like_content > .web {
   display: block;
 }
-.image_container:hover > .btn_like_content {
+.btn_like_content{
   width: 100%;
   height: 100%;
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.692);
+  background-color: transparent;
   top: 0;
   left: 0;
   transition: all 0.1s ease-in-out;
@@ -189,15 +202,15 @@
   justify-content: center;
   align-items: center;
 }
-.movil {
-  display: none;
+.image_container:hover > .btn_like_content {
+  background-color: rgba(0, 0, 0, 0.692);
 }
 
 @media screen and (max-width: 750px) {
   .item {
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
-    max-height: 750px;
+    min-height: min-content;
+    max-height: max-content;
   }
   .title_btn_like {
     display: none;
@@ -212,61 +225,31 @@
     margin-bottom: 0.5em;
     border-radius: 5px;
   }
-  .image_container:hover > .btn_like_content{
-    display: none;
+
+  .container_info_seco .response {
+    font-size: .9em;
   }
-  .web{
-    display: none;
+ 
+
+  .image_container:hover > .btn_like_content, .image_container .btn_like_content {
+    background-color: transparent;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
-  .movil {
+  .btn_like_content{
+    padding: .5em;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .btn_like {
+    width: 70px;
+    height: 70px;
+  }
+  .btn_like > .icon {
+    font-size: 2em;
+  }
+  .web {
     display: block;
-    bottom: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90px;
-    height: 90px;
-
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    cursor: pointer;
-    position: absolute;
-  
-    background-color: rgb(26, 22, 31);
-    appearance: none;
-    font-size: 1.2em;
-  
-    border: 3px solid rgb(125, 219, 48);
-    border-radius: 50%;
-    box-sizing: border-box;
-    outline: none;
-    transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    will-change: transform;
   }
-  .movil > .icon {
-    font-size: 3em;
-    color: rgba(125, 219, 48, 0.459);
-    transition: color 0.3s ease-in-out;
-  }
-  .movil:disabled {
-    pointer-events: none;
-  }
-  
-  .movil:hover {
-    box-shadow: rgba(231, 227, 227, 0.247) 0 8px 15px;
-
-  }
-  .movil:hover > .icon {
-    color: rgb(125, 219, 48);
-  }
-  .movil:active {
-    box-shadow: none;
-  }
-  
-  
 }

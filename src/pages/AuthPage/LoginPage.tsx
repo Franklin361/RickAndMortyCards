@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import { Form, Formik } from 'formik';
 import { TextInputForm } from '../../components/TextInputForm';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { AiOutlineUser, AiOutlineKey, AiOutlineLogin } from 'react-icons/ai';
 import { showToast } from '../../helper/toast';
 
@@ -10,6 +10,7 @@ import back_form from "../../assets/back_form.jpg";
 import './styles.css'
 
 export const LoginPage = () => {
+    const navigate = useNavigate();
     return (
         <div className='container_body'>
             <div className="container_form">
@@ -21,6 +22,7 @@ export const LoginPage = () => {
                     onSubmit={(values) => {
                         console.log(values)
                         showToast({type:'success', toastId:'0', message:'Correct Login'})
+                        navigate('/', { replace: true })
                     }}
                     validationSchema={
                         Yup.object({
@@ -33,7 +35,7 @@ export const LoginPage = () => {
                         ({ }) => (
                             <Form className='form' noValidate>
                                 <div className='container_titles'>
-                                    <h2 className='title_page'>Inicio de sesión</h2>
+                                    <h2 className='title_page_auth'>Inicio de sesión</h2>
                                     <span className='instructions'>Por favor ingrese su nombre de usuario y contraseña para poder ingresar.</span>
                                 </div>
 

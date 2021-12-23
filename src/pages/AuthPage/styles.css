@@ -27,7 +27,7 @@
   margin: 0 0 1em 0;
   gap: 0.5em;
 }
-.title_page {
+.title_page_auth {
   font-family: "Poppins", sans-serif;
   font-weight: 600;
   text-align: center;
@@ -187,7 +187,7 @@
 }
 
 @media screen and (max-width: 800px) {
-  .title_page {
+  .title_page_auth {
     font-size: 3em;
   }
   .container_form {
@@ -225,7 +225,7 @@
   .img_form {
     display: none;
   }
-  .title_page {
+  .title_page_auth {
     font-size: 2em;
     text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.075);
   }

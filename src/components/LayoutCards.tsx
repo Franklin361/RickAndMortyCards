@@ -3,16 +3,21 @@ import { Card } from './CardItem/Card';
 import { ResponseAPI } from '../interfaces/responseApi';
 
 interface IProps {
-    data: ResponseAPI
+    data: ResponseAPI;
+    page?: 'favorites'
 }
 
-export const LayoutCards = ({ data }: IProps) => {
+export const LayoutCards = ({ data,page }: IProps) => {
+
+    const isFavoritePge = page === 'favorites'
+
     return (
-        <main className="grid_gallery">
+        <main className={`${ isFavoritePge ? 'grid_gallery_favorites' :'grid_gallery'}`}>
             {
                 (data?.results && data.results.length !== 0)
-                && data.results.map(result => (
-                    <Card key={ result.id } {...result} />
+                    && 
+                data.results.map( result => (
+                    <Card key={ result.id } data={result} typeCard={page}/>
                 ))
             }
         </main>

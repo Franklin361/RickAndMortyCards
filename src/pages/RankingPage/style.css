@@ -1,0 +1,65 @@
+* {
+  box-sizing: border-box;
+}
+
+table {
+  text-align: center;
+  width: 90%;
+  margin: auto auto 3em auto;
+  font-family: "Poppins", sans-serif;
+  border-bottom: 5px solid rgb(125, 219, 48);
+  border-radius: 10px;
+  border-spacing: 10px;
+  /* box-shadow: rgba(34, 33, 33, 0.404) 0 8px 15px; */
+}
+th,
+td {
+  padding: 10px;
+}
+th {
+  background-color: #404040;
+  color: white;
+  border-radius: 5px;
+  
+}
+
+.rank {
+  font-size: 2em;
+}
+
+.rank_td{
+  border-radius: 20px;
+}
+
+.image_card_ranking {
+  width: 170px;
+  height: 170px;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+tbody tr {
+  background-color: rgb(125, 219, 48);
+}
+tbody tr td {
+  border: 2px solid black;
+}
+tbody tr:nth-child(odd) {
+  background-color: rgb(44, 41, 41);
+}
+tbody tr:nth-child(odd) td {
+  color: white;
+  border: 2px solid transparent;
+}
+.cabecera th div{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+}
+.cabecera th div span {
+  font-weight: bold;
+  font-size: 1.5em;
+  margin-right: .5em;
+}
+.cabecera th div .icon{
+  font-size: 2em;
+}

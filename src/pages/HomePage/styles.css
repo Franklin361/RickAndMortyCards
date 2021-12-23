@@ -4,7 +4,7 @@
   background: #f2f2f2;
   padding-top: 3em;
 }
-.grid_gallery {
+.grid_gallery,.grid_gallery_favorites {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   width: 94%;
@@ -13,7 +13,14 @@
   padding-bottom: 2em;
   /* outline: auto; */
 }
-
+.title_page{
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  margin: .5em auto 1em auto;
+  font-size: 3em;
+  width: 80%;
+  border-bottom: 1px solid black;
+}
 .section_search {
   width: 80%;
   transform: scale(0.8);

@@ -22,14 +22,12 @@ export const HomePage = () => {
         const fetchData = async () => {
             const res = await fetch(`https://rickandmortyapi.com/api/character/?page=${ Math.floor(Math.random()*42)+1 }`);
             const resData: ResponseAPI = await res.json();
-            console.log(resData)
             setData(resData);
         };
 
         if (isMounted.current) fetchData();
 
     }, [])
-
     return (
         <div className="container_home">
             

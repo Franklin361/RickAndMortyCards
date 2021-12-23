@@ -4,13 +4,17 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import "./styles.css";
 import { Result } from '../../interfaces/responseApi';
 import { Episode } from '../../interfaces/responseEpisode';
-import { Loading } from "../Loading/Loading";
+import { LoadingImage } from '../Loading/Loading';
 
+interface ICardProps{
+    data: Result;
+    typeCard?:string;
+}
 
-export const Card = (props: Result) => {
+export const Card = ({data, typeCard} :ICardProps) => {
     const [dataCardEpisode, setDataCardEpisode] = useState<Episode>();
 
-    const { id, image, name, status, type, gender, origin, location, episode } = props
+    const { id, image, name, status, type, gender, origin, location, episode } = data
 
     useEffect(() => {
 
@@ -29,18 +33,16 @@ export const Card = (props: Result) => {
     return (
         <div className="item" id={id.toString()} >
 
-
             <div className="image_container">
 
                 <LazyLoadImage
-                    // placeholder={}
+                    placeholder={<LoadingImage />}
                     src={image}
                     className="image_card"
-                    effect="blur"
+                    effect="opacity"
                 />
 
                 <div className="btn_like_content">
-
                     <button className="btn_like web" >
                         <AiFillHeart className="icon" />
                     </button>
@@ -49,31 +51,30 @@ export const Card = (props: Result) => {
             </div>
 
             <div className="info_character">
-                <h3 className="title_card">{name}</h3>
+                <h3 className="title_card">{name.length > 30 ? `${name.slice(0,30)}...`: name}</h3>
 
                 <div className="details_character">
                     <div className="container_info_seco">
-                        <p> Status: <span className={`response ${status.toLowerCase()}`}>{status}</span> </p>
-                        <p> Gender: <span className="response">{gender}</span></p>
+                        <div>
+                            <p> Status: </p>
+                            <span className={`response ${status.toLowerCase()}`}>{status}</span>
+                        </div>
+                        <div>
+                            <p> Gender: </p>
+                            <span className="response">{gender}</span>
+                        </div>
                     </div>
-                    {
-                        (type.length !== 0) && <p> Type: <span className="response">{type}</span></p>
-                    }
-                    <p> Origin: <span className="response">{ origin.name.length > 25 ? `${origin.name.slice(0,25)}...` : origin.name}</span></p>
-                    <p> Location: <span className="response">{ location.name.length > 20 ? `${location.name.slice(0,23)}...` : location.name}</span></p>
+                    
+                    <p> Origin: <span className="response">{origin.name.length > 25 ? `${origin.name.slice(0, 25)}...` : origin.name}</span></p>
+                    <p> Location: <span className="response">{location.name.length > 20 ? `${location.name.slice(0, 23)}...` : location.name}</span></p>
                     <p> First seen in: <span className="response">{
-                        (dataCardEpisode?.name) 
-                        ?  dataCardEpisode.name.length > 25 
-                            ? `${dataCardEpisode.name.slice(0,25)}...` 
-                            : dataCardEpisode.name 
-                        : ''
+                        (dataCardEpisode?.name)
+                            ? dataCardEpisode.name.length >= 20
+                                ? `${dataCardEpisode.name.slice(0, 20)}...`
+                                : dataCardEpisode.name
+                            : ''
                     }</span></p>
                 </div>
-
-                <button className="movil" >
-
-                    <AiFillHeart className="icon" />
-                </button>
             </div>
         </div>
     )
