@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 interface IToast {
     type: 'success' | 'error',
     autoClose?: number;
-    toastId:string;
+    toastId?:string;
     message:string;
 }
 
@@ -18,6 +18,6 @@ export const showToast = ({ message, type,autoClose = 3000, toastId }: IToast) =
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        toastId
+        toastId: toastId ?? undefined
     });
 };

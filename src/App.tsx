@@ -4,6 +4,8 @@ import './index.css'
 import 'react-toastify/dist/ReactToastify.min.css';
 import { ToastContainer } from "react-toastify";
 
+import { AuthProvider } from './context/AuthContext';
+
 const App = () => {
   return (
     <AppState>
@@ -15,9 +17,9 @@ const App = () => {
 
 const AppState: React.FC = ({ children }) => {
   return (
-    <>
+    <AuthProvider>
       {children}
-    </>
+    </AuthProvider>
   )
 };
 

@@ -5,10 +5,13 @@ import { InputSearch } from "../../components/InputSearch";
 import { LayoutCards } from '../../components/CardItem/LayoutCards';
 
 import "./styles.css";
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { ResponseAPI } from '../../interfaces/responseApi';
+import { AuthContext } from '../../context/AuthContext';
 
 export const HomePage = () => {
+
+
 
     const [data, setData] = useState<ResponseAPI>({} as ResponseAPI)
     const isMounted = useRef(true);

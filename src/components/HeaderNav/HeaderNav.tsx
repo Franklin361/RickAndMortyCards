@@ -1,17 +1,22 @@
+import { useContext } from "react";
 import { AiOutlineBarChart, AiOutlineHeart, AiOutlineHome, AiOutlineLogout } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 import profile from "../../assets/404_img.jpeg";
 
 import './style.css'
+import { AuthContext } from '../../context/AuthContext';
 
 export const HeaderNav = () => {
+
+    const { auth, handleLogout } = useContext(AuthContext);
+
     return (
         <header className="header_home">
             <div className="detail_user">
                 <div className="img_profile">
                     <img src={profile} alt="" />
                 </div>
-                <span className="username">Franklin Martinez Lucas</span>
+                <span className="username">{ auth.name ?? 'unknow' }</span>
             </div>
 
             <div className="section_nav">
@@ -38,7 +43,7 @@ export const HeaderNav = () => {
                 </NavLink>
                 
 
-                <button className="btn_logout">
+                <button className="btn_logout" onClick={handleLogout}>
                     <span className="title_nav">Salir</span>
                     <AiOutlineLogout className="icon" />
                 </button>

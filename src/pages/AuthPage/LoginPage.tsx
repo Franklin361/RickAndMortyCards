@@ -1,28 +1,30 @@
 import * as Yup from 'yup';
 import { Form, Formik } from 'formik';
 import { TextInputForm } from '../../components/TextInputForm';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { AiOutlineUser, AiOutlineKey, AiOutlineLogin } from 'react-icons/ai';
 import { showToast } from '../../helper/toast';
 
 import back_form from "../../assets/back_form.jpg";
 
 import './styles.css'
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
 
 export const LoginPage = () => {
-    const navigate = useNavigate();
+    
+    const { handleLogin, loading } = useContext(AuthContext);
+
     return (
         <div className='container_body'>
             <div className="container_form">
                 <Formik
                     initialValues={{
-                        username: '',
-                        password: ''
+                        username: 'franklin361',
+                        password: '123456'
                     }}
-                    onSubmit={(values) => {
-
-                        showToast({type:'success', toastId:'0', message:'Correct Login'})
-                        navigate('/', { replace: true })
+                    onSubmit={({ username, password}) => {  
+                        handleLogin(username, password);
                     }}
                     validationSchema={
                         Yup.object({
@@ -59,9 +61,12 @@ export const LoginPage = () => {
                                     <AiOutlineKey className='icon' />
                                 </TextInputForm>
 
-                                <button type="submit" className='btn_login'>
-                                    Ingresar
-                                    <AiOutlineLogin className='icon' />
+                                <button type="submit" className='btn_login' disabled={loading}>
+                                    {
+                                        !loading 
+                                        ? <>Ingresar<AiOutlineLogin className='icon' /></>
+                                        : 'Validando ...'
+                                    }
                                 </button>
 
                                 <span className='sign_up_link'>¿Aún no tienes cuenta 🤔? <Link to="/sign-up">Crea una aquí</Link></span>

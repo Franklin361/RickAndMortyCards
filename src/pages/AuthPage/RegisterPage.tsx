@@ -9,9 +9,15 @@ import back_form from "../../assets/back_form_register.jpg";
 
 import './styles.css'
 import './register.css'
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
 
 
 export const RegisterPage = () => {
+
+    const { handleSignUp, loading } = useContext(AuthContext);
+
+
     return (
         <div className='container_body body_form'>
             <div className="container_form register_form">
@@ -20,19 +26,18 @@ export const RegisterPage = () => {
                 </div>
                 <Formik
                     initialValues={{
-                        username: '',
-                        password: '',
-                        email:''
+                        username: 'user',
+                        password: '123456',
+                        email:'correo@correo.com'
                     }}
-                    onSubmit={(values) => {
-                        console.log(values)
-                        showToast({ type: 'success', toastId: '0', message: 'Correct Register' })
+                    onSubmit={({ username, password, email}) => {
+                        handleSignUp(username, password, email);
                     }}
                     validationSchema={
                         Yup.object({
-                            username: Yup.string().required('Este campo es requerido'),
+                            username: Yup.string().min(6, 'Debe tener minimo 6 caracteres').required('Este campo es requerido').max(10, 'Maximo 10 caracteres'),
                             email: Yup.string().required('Este campo es requerido').email('Correo electronico no valido'),
-                            password: Yup.string().min(6, 'Debe tener minimo 6 letras').required('Este campo es requerido'),
+                            password: Yup.string().min(6, 'Debe tener minimo 6 caracteres').max(10, 'Maximo 10 caracteres').required('Este campo es requerido'),
                         })
                     }
                 >
@@ -74,9 +79,12 @@ export const RegisterPage = () => {
                                     <AiOutlineKey className='icon' />
                                 </TextInputForm>
 
-                                <button type="submit" className='btn_login btn_register'>
-                                    Crear cuenta
-                                    <AiOutlineLogin className='icon' />
+                                <button type="submit" className='btn_login btn_register' disabled={loading}>
+                                    {
+                                        !loading 
+                                        ? <>Crear cuenta <AiOutlineLogin className='icon' /></>
+                                        : 'Validando ...'
+                                    }
                                 </button>
 
                                 <span className='sign_up_link'>¿Ya tienes una cuenta 🤨? <Link to="/login">

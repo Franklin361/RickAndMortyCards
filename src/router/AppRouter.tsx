@@ -1,8 +1,9 @@
-import { lazy, Suspense } from "react";
+import { lazy, useContext, useEffect } from "react";
 import { BrowserRouter, Navigate, Outlet, Route, Routes } from "react-router-dom";
 import { Loading } from '../components/Loading/Loading';
 import { HeaderNav } from '../components/HeaderNav/HeaderNav';
 import { LazyCompont } from '../components/LazyCompont';
+import { AuthContext } from '../context/AuthContext';
 
 const LoginPage = lazy(() => import("../pages/AuthPage/LoginPage"));
 const RegisterPage = lazy(() => import("../pages/AuthPage/RegisterPage"));
@@ -11,6 +12,16 @@ const RankingPage = lazy(() => import("../pages/RankingPage/Ranking"));
 const MyFavoritesPage = lazy(() => import("../pages/MyFavoritesPage/MyFavorites"));
 
 export const AppRouter = () => {
+
+    const { auth,verificarToken } = useContext(AuthContext)
+
+    useEffect(() => {
+        verificarToken();
+    }, [])
+
+    if(auth.checking){
+        return <Loading width="100vw" height="100vh" />
+    }
     
     return (
         <BrowserRouter>
@@ -36,12 +47,12 @@ export const AppRouter = () => {
 
 
 const ProtectedRoutes: React.FC = () => {
-    const isAuth = true;
+    const { auth } = useContext(AuthContext)
 
     return (
         <>
             {
-                isAuth
+                auth.logged
                     ? <><HeaderNav/><Outlet /></>
                     : <Navigate replace={true} to='/login' />
             }
@@ -49,7 +60,7 @@ const ProtectedRoutes: React.FC = () => {
 };
 
 const PublicRoutes: React.FC = () => {
-    const isAuth = true;
+    const { auth } = useContext(AuthContext)
 
-    return <>{isAuth ? <Navigate replace={true} to='/' /> : <Outlet />}</>
+    return <>{ auth.logged ? <Navigate replace={true} to='/' /> : <Outlet />}</>
 };
