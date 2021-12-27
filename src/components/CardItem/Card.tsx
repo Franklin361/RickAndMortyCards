@@ -24,7 +24,7 @@ export const Card = ({ data, typeCard }: ICardProps) => {
 
     const isFavPage = typeCard === 'favorites';
 
-    const { id, image, name, status, type, gender, origin, location, episode, url } = data
+    const { id, image, name, status, type, gender, origin, location, episode, url, species } = data
     const isMounted = useRef(true);
 
     useEffect(() => {
@@ -74,7 +74,7 @@ export const Card = ({ data, typeCard }: ICardProps) => {
                     (!isFavPage)
                     &&
                     <div className="btn_like_content">
-                        <button className="btn_like web" onClick={()=>handleLiked('like')}>
+                        <button className="btn_like web" onClick={() => handleLiked('like')}>
                             <AiFillHeart className="icon" />
                         </button>
                         <span className="title_btn_like">Me gusta!</span>
@@ -83,7 +83,7 @@ export const Card = ({ data, typeCard }: ICardProps) => {
             </div>
 
             <div className="info_character">
-                <h3 className="title_card">{name.length > 30 ? `${name.slice(0, 30)}...` : name}</h3>
+                <h3 className="title_card">{ name.length > 15 && !isFavPage ? `${name.slice(0, 15)}...` : name}</h3>
 
                 <div className="details_character">
                     <div className="container_info_seco">
@@ -97,21 +97,43 @@ export const Card = ({ data, typeCard }: ICardProps) => {
                         </div>
                     </div>
 
-                    <p> Origin: <span className="response">{origin.name.length > 25 ? `${origin.name.slice(0, 25)}...` : origin.name}</span></p>
-                    <p> Location: <span className="response">{location.name.length > 20 ? `${location.name.slice(0, 23)}...` : location.name}</span></p>
-                    <p> First seen in: <span className="response">{
-                        (dataCardEpisode?.name)
-                            ? dataCardEpisode.name.length >= 20
-                                ? `${dataCardEpisode.name.slice(0, 20)}...`
-                                : dataCardEpisode.name
-                            : ''
-                    }</span></p>
+                    <p> Origin:
+                        <span className="response">
+                            {origin.name.length > 20 && !isFavPage ? ` ${origin.name.slice(0, 25)}...` : ` ${origin.name}`}
+                        </span>
+                    </p>
+                    <p> Location:
+                        <span className="response">
+                            { location.name.length > 20 && !isFavPage ? ` ${location.name.slice(0, 23)}...` : ` ${location.name}`}
+                        </span>
+                    </p>
+                    {
+                        isFavPage
+                         && <>
+                            {
+                                type && <p>Type: <span className="response">{ type }</span> </p>
+                            }
+                            {
+                                species && <p>Species: <span className="response">{ species }</span> </p>
+                            }
+                         </>
+                    }
+                    <p> First seen in:
+                        <span className="response">
+                            {
+                                (dataCardEpisode && dataCardEpisode.name.length >= 17 && !isFavPage)
+                                        ? ` ${dataCardEpisode.name.slice(0, 17)}...`
+                                        : ` ${dataCardEpisode?.name}`
+                            }
+                        </span>
+                    </p>
+                    
 
                     {
                         (isFavPage)
                         &&
                         <div className="delete_favs">
-                            <button onClick={()=> handleLiked('dislike')}>
+                            <button onClick={() => handleLiked('dislike')}>
                                 Eliminar de Mis Favoritos
                                 <AiOutlineDelete className="icon" />
                             </button>

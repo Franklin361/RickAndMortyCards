@@ -4,12 +4,16 @@
   margin: auto;
   overflow: hidden;
   min-height: 260px;
-  max-height: 340px;
+  /* max-height: 340px; */
   display: grid;
   grid-template-columns: 45% 55%;
   background-color: rgb(49, 45, 53);
   box-shadow: rgba(34, 33, 33, 0.404) 0 8px 15px;
+
+  animation: fadeIn 1s both;
 }
+
+
 
 .item_favs{
   display: flex;
@@ -18,8 +22,8 @@
 }
 
 .delete_favs{
+  margin-top: 1em;
   width: 100%;
-  
   display: flex;
   justify-content: flex-end;
 }
@@ -64,6 +68,7 @@
 
 
 .image_favs{
+  
   animation: fadeIn 1s ease-in-out;
   width: 500px;
   min-height: 100px;

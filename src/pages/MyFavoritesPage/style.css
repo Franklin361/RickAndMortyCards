@@ -1,8 +1,83 @@
-.title_page{
-    font-family: "Poppins", sans-serif;
-    text-align: center;
-    margin: .5em auto 1em auto;
-    font-size: 3em;
-    width: 80%;
-    border-bottom: 1px solid black;
+.title_page {
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  margin: 0.5em auto 1em auto;
+  font-size: 3em;
+  width: 80%;
+  border-bottom: 1px solid black;
+}
+
+.nodata_favs {
+  /* outline: auto; */
+  text-align: center;
+  
+  
+}
+
+.nodata_favs > img {
+  width: 330px;
+  height: 300px;
+  margin: auto;
+  object-fit: cover;
+  animation: bounceIn 1s linear;
+}
+.nodata_favs > p {
+  color: #000000;
+  font-size: 3em;
+  font-weight: 900;
+  font-family: "Poppins", sans-serif;
+  /* outline: auto; */
+  text-decoration: overline;
+  text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.308);
+  animation: fadeInUp 1s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
   }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes bounceIn {
+  from,
+  20%,
+  40%,
+  60%,
+  80%,
+  to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  0% {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  20% {
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  40% {
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+
+  80% {
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+}

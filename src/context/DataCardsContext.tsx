@@ -17,11 +17,13 @@ export const DataCardsProvider: React.FC = ({ children }) => {
     const [favorites, setFavorites] = useState<string[]>([])
     const [ranking, setRanking] = useState<ResponseRanking[]>([]);
 
+    
 
     const updateFavorites = ({ favorites, message = '', type }:ResponseSocket) => {
         
         if(favorites){
             if(favorites.length !== 0) setFavorites(favorites);
+            else setFavorites([])
         }
 
         if(message.length !== 0 && type ) {

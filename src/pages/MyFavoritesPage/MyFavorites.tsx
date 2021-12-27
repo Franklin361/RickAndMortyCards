@@ -1,12 +1,12 @@
 
 import { useEffect, useRef, useState, useContext } from 'react';
-import { Card } from '../../components/CardItem/Card';
 import './style.css'
-import { ResponseAPI, Result } from '../../interfaces/responseApi';
+import { Result } from '../../interfaces/responseApi';
 import { LayoutCards } from '../../components/CardItem/LayoutCards';
 import { DataCardsContext } from '../../context/DataCardsContext';
+import { Loading } from '../../components/Loading/Loading';
 
-
+import nodata from '../../assets/nodata.png';
 
 export const MyFavorites = () => {
 
@@ -33,9 +33,9 @@ export const MyFavorites = () => {
     const fetching = async () => {
 
       try {
-        if(!favorites) return;
+        if (!favorites) return;
         if (favorites.length !== 0) {
-          
+
           setLoading(true);
           let fetchCards = favorites.map(url => fetch(url, { signal: controller.signal }));
 
@@ -54,11 +54,11 @@ export const MyFavorites = () => {
           setData([])
         }
       } catch (e) {
-        
+
         let error: Error = (e as Error);
         console.log(error.message);
 
-      }finally{
+      } finally {
         setLoading(false);
       }
 
@@ -77,11 +77,14 @@ export const MyFavorites = () => {
     <div>
       <h2 className='title_page'>Mis tarjetas favoritas 💚 </h2>
       {
-        loading 
-        ? <p>Cargando ...</p>
-        : (data && data.length !== 0)
-          ? <LayoutCards data={data} page='favorites' />
-          : <p>No hay Favoritos</p>
+        (loading)
+          ? <Loading width='100%' height='100%' background='transparent' color='#59d3137f' />
+          : (data && data.length !== 0)
+            ? <LayoutCards data={data} page='favorites' />
+            : <div className='nodata_favs'>
+              <img src={nodata} />
+              <p>No hay Favoritos</p>
+            </div>
       }
     </div>
   )

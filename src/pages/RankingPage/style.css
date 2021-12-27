@@ -7,21 +7,6 @@
   border-bottom: 1px solid black;
 }
 
-.cabecera th div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.cabecera th div span {
-  font-weight: bold;
-  font-size: 1.5em;
-  margin-right: 0.5em;
-}
-.cabecera th div .icon {
-  font-size: 2em;
-  color: black;
-}
-
 .container_rank_movil {
   /* display: none; */
   font-family: "Poppins", sans-serif;
@@ -29,6 +14,7 @@
   margin: auto;
 }
 .item_movil_rank {
+  animation: fadeInUp 1s ease;
   background-color: #1d1c1c;
   margin: 1em 0;
   padding: 1em 0;
@@ -84,6 +70,17 @@
   }
 }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
 
 .rank_movil {
   font-weight: bold;
