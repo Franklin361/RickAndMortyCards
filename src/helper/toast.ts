@@ -1,16 +1,21 @@
 import { toast } from 'react-toastify';
 
+type PositionType = 'bottom-center' | 'bottom-left' | 'bottom-right' | 'top-center' | 'top-left' | 'top-right'
+
+export type ToastType = 'success' | 'error' | 'info' | 'warning'
+
 interface IToast {
-    type: 'success' | 'error',
+    type: ToastType,
     autoClose?: number;
     toastId?:string;
     message:string;
+    position?: PositionType;
 }
 
-export const showToast = ({ message, type,autoClose = 3000, toastId }: IToast) => {
+export const showToast = ({ message, type,autoClose = 3000, toastId, position = 'bottom-center' }: IToast) => {
     
     toast[type]( message , {
-        position: "top-right",
+        position,
         theme:'dark',
         autoClose,
         hideProgressBar: false,
@@ -18,6 +23,7 @@ export const showToast = ({ message, type,autoClose = 3000, toastId }: IToast) =
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        toastId: toastId ?? undefined
+        toastId: toastId ?? undefined,
+        
     });
 };

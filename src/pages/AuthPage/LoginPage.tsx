@@ -20,8 +20,8 @@ export const LoginPage = () => {
             <div className="container_form">
                 <Formik
                     initialValues={{
-                        username: 'franklin361',
-                        password: '123456'
+                        username : '',
+                        password : ''
                     }}
                     onSubmit={({ username, password}) => {  
                         handleLogin(username, password);

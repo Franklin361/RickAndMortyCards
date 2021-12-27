@@ -1,36 +1,63 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useContext } from 'react';
 import { AiOutlineHeart, AiFillHeart, AiOutlineDelete } from "react-icons/ai";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import "./styles.css";
 import { Result } from '../../interfaces/responseApi';
 import { Episode } from '../../interfaces/responseEpisode';
 import { LoadingImage } from '../Loading/Loading';
+import { showToast } from '../../helper/toast';
+import { SocketContext } from '../../context/SocketContext';
 
 interface ICardProps {
     data: Result;
     typeCard?: 'favorites';
 }
 
+
 export const Card = ({ data, typeCard }: ICardProps) => {
-    const [dataCardEpisode, setDataCardEpisode] = useState<Episode>();
+
+    const { doActionCard } = useContext(SocketContext)
+
+    const controller = new AbortController();
+    const signal = controller.signal
+    const [dataCardEpisode, setDataCardEpisode] = useState<Episode | null>();
 
     const isFavPage = typeCard === 'favorites';
 
-    const { id, image, name, status, type, gender, origin, location, episode } = data
+    const { id, image, name, status, type, gender, origin, location, episode, url } = data
+    const isMounted = useRef(true);
+
+    useEffect(() => {
+
+        return () => {
+            isMounted.current = false
+            controller.abort();
+            setDataCardEpisode(null);
+        }
+
+    }, []);
 
     useEffect(() => {
 
         const fetchDataEpisode = async () => {
-            const res = await fetch(episode[0]);
-            const data: Episode = await res.json();
-            setDataCardEpisode(data)
+            try {
+                const res = await fetch(episode[0], { signal });
+                const data: Episode = await res.json();
+                setDataCardEpisode(data)
+            } catch (e) {
+                let error: Error = (e as Error);
+                if (error.name == 'AbortError') console.log('Se ha cancelado la petición en la card');
+                else throw error;
+            }
         };
 
-        if (episode[0]) {
-            fetchDataEpisode()
-        }
+        if (episode[0] && isMounted.current) fetchDataEpisode();
 
     }, [])
+
+    const handleLiked = (action: 'like' | 'dislike') => {
+        doActionCard({ url, action, image, name });
+    };
 
     return (
         <div className={`item ${isFavPage && 'item_favs'}`} id={id.toString()} >
@@ -47,7 +74,7 @@ export const Card = ({ data, typeCard }: ICardProps) => {
                     (!isFavPage)
                     &&
                     <div className="btn_like_content">
-                        <button className="btn_like web" >
+                        <button className="btn_like web" onClick={()=>handleLiked('like')}>
                             <AiFillHeart className="icon" />
                         </button>
                         <span className="title_btn_like">Me gusta!</span>
@@ -84,9 +111,9 @@ export const Card = ({ data, typeCard }: ICardProps) => {
                         (isFavPage)
                         &&
                         <div className="delete_favs">
-                            <button>
-                            Eliminar de Mis Favoritos
-                            <AiOutlineDelete className="icon"/>
+                            <button onClick={()=> handleLiked('dislike')}>
+                                Eliminar de Mis Favoritos
+                                <AiOutlineDelete className="icon" />
                             </button>
                         </div>
                     }

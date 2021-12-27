@@ -1,10 +1,11 @@
 import { useContext } from "react";
 import { AiOutlineBarChart, AiOutlineHeart, AiOutlineHome, AiOutlineLogout } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
-import profile from "../../assets/404_img.jpeg";
 
 import './style.css'
 import { AuthContext } from '../../context/AuthContext';
+
+import profile from "../../assets/avatar.jpg";
 
 export const HeaderNav = () => {
 

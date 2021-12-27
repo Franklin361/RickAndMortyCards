@@ -1,14 +1,20 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useDebounce } from './useDebounce';
 
-export const useFilterHome = () => {
-    const [form, setForm] = useState({
-        nombre: '',
-        genero: '',
-        estado: ''
-    });
 
+const initalState = {
+    nombre: '',
+    genero: '',
+    estado: ''
+}
+
+export const useFilterHome = () => {
+    const [form, setForm] = useState(initalState);
+
+    let [searchParams, setSearchParams] = useSearchParams();  
+    
     const { nombre, estado, genero } = form
     
     const debouncedSearchTerm = useDebounce(nombre, 1000);
@@ -20,22 +26,31 @@ export const useFilterHome = () => {
          })
     };
 
+    const handleReset = () => {
+        
+        setForm({
+            nombre: '',
+            genero: '',
+            estado: ''
+        });
+    };
     
     useEffect(() => {
-        if(estado || genero){
-            console.log({estado, genero});
-        }
-    }, [estado, genero]);
 
-
-    useEffect(() => {
-        if(debouncedSearchTerm){
-            console.log({debouncedSearchTerm})
+        const data = {
+            ...(estado) && { status : estado},
+            ...(genero) && { gender : genero},
+            ...(debouncedSearchTerm) && { name: debouncedSearchTerm},
         }
-    }, [debouncedSearchTerm])
+
+        setSearchParams(data); 
+        
+    }, [estado, genero, debouncedSearchTerm]);
+
 
     return {
         ...form,
-        onChange
+        onChange,
+        handleReset
     }
 }

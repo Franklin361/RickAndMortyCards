@@ -3,11 +3,12 @@ import './style.css';
 interface ILoadingProps {
     width: string;
     height: string;
+    background?:string;
 }
 
-export const Loading = ({ width, height }: ILoadingProps) => {
+export const Loading = ({ width, height, background='rgb(36, 34, 34)' }: ILoadingProps) => {
     return (
-        <div className="container_loading" style={{ width, height }}>
+        <div className="container_loading" style={{ width, height, background }}>
             <LoadingImage />
             <span>Cargando...</span>
         </div>

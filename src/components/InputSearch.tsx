@@ -1,12 +1,13 @@
+import { useContext } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { changeScale } from "../helper/changeScaleInput";
 import { useFilterHome } from '../hooks/useFilterHome';
+import { FilterContext } from '../context/FilterContext';
 
 
 export const InputSearch = () => {
 
-
-    const { onChange, nombre, estado, genero } = useFilterHome();
+    const { onChange, estado, nombre, genero } = useContext(FilterContext);
 
     return (
         <>

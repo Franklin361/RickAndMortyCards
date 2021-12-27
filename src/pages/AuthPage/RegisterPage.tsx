@@ -26,9 +26,9 @@ export const RegisterPage = () => {
                 </div>
                 <Formik
                     initialValues={{
-                        username: 'user',
-                        password: '123456',
-                        email:'correo@correo.com'
+                        username : '',
+                        password : '',
+                        email    : ''
                     }}
                     onSubmit={({ username, password, email}) => {
                         handleSignUp(username, password, email);

@@ -4,6 +4,7 @@ import { Loading } from '../components/Loading/Loading';
 import { HeaderNav } from '../components/HeaderNav/HeaderNav';
 import { LazyCompont } from '../components/LazyCompont';
 import { AuthContext } from '../context/AuthContext';
+import { FilterProvider } from '../context/FilterContext';
 
 const LoginPage = lazy(() => import("../pages/AuthPage/LoginPage"));
 const RegisterPage = lazy(() => import("../pages/AuthPage/RegisterPage"));
@@ -19,6 +20,7 @@ export const AppRouter = () => {
         verificarToken();
     }, [])
 
+
     if(auth.checking){
         return <Loading width="100vw" height="100vh" />
     }
@@ -33,7 +35,7 @@ export const AppRouter = () => {
                 </Route>
 
                 <Route element={<ProtectedRoutes />}>
-                    <Route index element={<LazyCompont> <HomePage />  </LazyCompont>} />
+                    <Route index element={ <LazyCompont> <FilterProvider> <HomePage /> </FilterProvider> </LazyCompont>} />
                     <Route path="ranking" element={<LazyCompont> <RankingPage />  </LazyCompont>} />
                     <Route path="favorites" element={<LazyCompont> <MyFavoritesPage />  </LazyCompont>} />
                 </Route>

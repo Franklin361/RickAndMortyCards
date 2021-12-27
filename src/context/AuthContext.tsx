@@ -5,11 +5,11 @@ import { UserResponse } from '../interfaces/user';
 
 interface IAuthState {
     handleLogin: (username: string, password: string) => Promise<void>;
-    handleSignUp: (username: string, password: string, email:string) => Promise<void>;
+    handleSignUp: (username: string, password: string, email: string) => Promise<void>;
     verificarToken: () => Promise<void>;
     handleLogout: () => void;
     auth: IInitialState;
-    loading:boolean;
+    loading: boolean;
 }
 
 export const AuthContext = createContext({} as IAuthState);
@@ -35,11 +35,11 @@ export const AuthProvider: React.FC = ({ children }) => {
     const [loading, setLoading] = useState(false);
 
     const handleSignUp = async (username: string, password: string, email: string) => {
-        
+
         setLoading(true);
 
-        const res:UserResponse = await fetchWhitOutToken('/api/auth/signup', { username, password ,email}, 'POST');
-        
+        const res: UserResponse = await fetchWhitOutToken('/api/auth/signup', { username, password, email }, 'POST');
+
         if (res?.user) {
             localStorage.setItem('token', res.token);
             setAuth({
@@ -60,11 +60,11 @@ export const AuthProvider: React.FC = ({ children }) => {
     };
 
     const handleLogin = async (username: string, password: string) => {
-        
+
         setLoading(true);
 
-        const res:UserResponse = await fetchWhitOutToken('/api/auth/login', { username, password }, 'POST');
-        
+        const res: UserResponse = await fetchWhitOutToken('/api/auth/login', { username, password }, 'POST');
+
         if (res?.user) {
             localStorage.setItem('token', res.token);
             setAuth({
@@ -86,51 +86,49 @@ export const AuthProvider: React.FC = ({ children }) => {
 
     const handleLogout = () => {
         localStorage.removeItem('token');
-    
+        setAuthResetState();
+    };
+
+    const verificarToken = useCallback(async () => {
+        try {
+            const token = localStorage.getItem('token');
+
+            if (!token) {
+                setAuthResetState();
+                return;
+            }
+
+            const res: UserResponse = await fetchWhitToken('/api/auth/renew', null, 'GET');
+
+            if (res.user) {
+
+                localStorage.setItem('token', res.token);
+
+                setAuth({
+                    uid: res.user.uid,
+                    checking: false,
+                    logged: true,
+                    name: res.user.username
+                });
+
+            } else {
+                setAuthResetState();
+            }
+        } catch (error) {
+            console.log(error);
+            setAuthResetState();
+        }
+
+    }, [])
+
+    const setAuthResetState = () => {
         setAuth({
             uid: null,
             checking: false,
             logged: false,
             name: null,
-        });
+        })
     };
-
-    const verificarToken = useCallback(async () => {
-        const token = localStorage.getItem('token');
-        
-        if (!token) {
-            setAuth({
-                uid: null,
-                checking: false,
-                logged: false,
-                name: null,
-            });
-            return;
-        }
-
-        const res:UserResponse = await fetchWhitToken('/api/auth/renew', null, 'GET');
-
-        if (res.user) {
-
-            localStorage.setItem('token', res.token);
-
-            setAuth({
-                uid: res.user.uid,
-                checking: false,
-                logged: true,
-                name: res.user.username
-            });
-
-        } else {
-            setAuth({
-                uid: null,
-                checking: false,
-                logged: false,
-                name: null,
-            })
-        }
-
-    }, [])
 
     return (
         <AuthContext.Provider value={{
