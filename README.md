@@ -35,7 +35,7 @@
 - **Mongo DB**
 - **Express JS**
 - **Socket.IO**
-- **Heroku** (to deploy the api)
+- **Render** (to deploy the api)
 
 > **Note**: You can review the backend code in this link: [https://github.com/Franklin361/RickAndMortyCardsAPI](https://github.com/Franklin361/RickAndMortyCardsAPI)
 
